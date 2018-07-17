@@ -15,12 +15,18 @@ clear all
 pathToData= 'C:\Users\dum5\OneDrive\_Shared Drive - Interference Project - Alessandro - Dulce_\Params Files\subjectsData';
 
 % load('ExtAdaptPNormAllData.mat')
-% param={'ExtAdaptPNorm'};
+% load('ExtAdaptPNormAllDataWithNANV4.mat')
+load('netContributionPNormAllDataV8.mat')
+param={'netContributionPNormAllDataV8'};
+slaI=netContributionPNormINT;
+slaS=netContributionPNormSAV;
 
-load('ExtAdaptNorm2AllData.mat') 
-param={'ExtAdaptNorm2'};
-slaI=ExtAdaptINT;
-slaS=ExtAdaptSAV;
+
+
+% load('ExtAdaptNorm2AllData.mat') 
+% param={'ExtAdaptNorm2'};
+% slaI=ExtAdaptINT;
+% slaS=ExtAdaptSAV;
 
 %  load('stepLengthAsymShifted.mat')
 % load('stepLengthAsymAllData.mat')
@@ -32,8 +38,9 @@ slaS=ExtAdaptSAV;
 
 groups = 2;
 charGroups = {'S','I'};
-indSubs = {1:8, setdiff(1:9, 2)};
-subs = {9 , 8};
+% indSubs = {1:8, setdiff(1:9, 2)};
+indSubs = {1:10, 1:10};
+subs = {10, 10};
 
 NUM_CONS=5;
 INCREASING=1;
@@ -41,7 +48,7 @@ START_FROM_MINIMUM=1;
 cond_Inter=[2,5];
 cond_Sav=[2,4];
 
-minNOSToRemove=nan(9,2);
+minNOSToRemove=nan(10,2);
 
 for sub=1:subs{2}
     
