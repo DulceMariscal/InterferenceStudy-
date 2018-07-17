@@ -1,0 +1,54 @@
+%% Explore data to check consistency
+
+clc
+close all
+clear all
+
+%% What to do with the script
+PLOT_DATA = 1;
+
+%% How to do it
+%Parameters to extract
+parameters = {'StepLengthAsym','singleStanceSpeedFastAbs','singleStanceSpeedSlowAbs'};
+
+
+%% Define folder
+folderToData = ['C:\Users\salat\OneDrive\Documents\MATLAB\Walking Speed & Generalization Study\'];
+groups={'OldSlow','OldFast','YoungSlow','YoungFast'};
+ngroups=length(groups);
+
+%% Define common conditions (those that eveybody did)
+CCond{1} = {'OG base', 'TM base', 'adaptation', 'catch' ,'re-adaptation' ,   'OG post' ,   'TM post'} ;
+
+%% Initializations
+nsubs=zeros(1,ngroups);
+
+%% Main cycle
+for group=1:ngroups
+    
+    cgr=groups{group};
+    cfold=[folderToData cgr '\'];
+    allSubs=dir([cfold '*params.mat']);
+    nsubs(group) = length(allSubs);
+    
+    if PLOT_DATA
+        [subjects_struct, miMaMatrix, conds] = fill_subject_struct(allSubs,parameters,nsubs(group),cfold); %This makes sense only if all the subjects did the same thing
+%         plot_all_subjects(subjects_struct, miMaMatrix, parameters, nsubs(group),cfold);
+    end
+%     figure 
+%     subplot()
+%     for sub=1:nsubs(exp)
+%         
+%     end
+    
+    
+    
+    
+end
+
+%%
+v = 1:10;
+X = [v' 2*v' (v.*v)'];   %10  X 3
+Y = [v'   v'    v'];     % 10 X 3
+figure
+gplotmatrix(X,Y)
